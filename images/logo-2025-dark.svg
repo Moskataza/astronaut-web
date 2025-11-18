@@ -1,0 +1,31 @@
+<svg width="186" height="56" viewBox="0 0 186 56" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="space2025Dark">
+	<title id="space2025Dark">中国航天2025专题标识（深色版）</title>
+	<defs>
+		<linearGradient id="orbitDark" x1="6" y1="6" x2="50" y2="50" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#2F58FF" />
+			<stop offset="0.5" stop-color="#40B8FF" />
+			<stop offset="1" stop-color="#70FFCB" />
+		</linearGradient>
+		<linearGradient id="ringDark" x1="10" y1="28" x2="82" y2="34" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#1E2A5C" stop-opacity="0" />
+			<stop offset="0.35" stop-color="#2E4AA8" stop-opacity="0.7" />
+			<stop offset="1" stop-color="#53E0A6" stop-opacity="0.95" />
+		</linearGradient>
+	</defs>
+	<g filter="url(#glowDark)">
+		<circle cx="32" cy="28" r="22" fill="rgba(7,18,43,0.45)" stroke="url(#orbitDark)" stroke-width="2.2" />
+		<path d="M12 30C30 18 52 18 72 30C60 40 36 44 16 34" stroke="url(#ringDark)" stroke-width="2.5" stroke-linecap="round" />
+		<circle cx="56" cy="22" r="3" fill="#0E1642" />
+	</g>
+	<filter id="glowDark" x="0" y="0" width="96" height="56" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+		<feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+		<feMerge>
+			<feMergeNode in="coloredBlur" />
+			<feMergeNode in="SourceGraphic" />
+		</feMerge>
+	</filter>
+	<text x="96" y="27" fill="#0c1533" font-size="20" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif" font-weight="600">中国航天</text>
+	<text x="96" y="44" fill="#4b5c8f" font-size="14" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif" letter-spacing="0.3em">2025</text>
+</svg>
+
+

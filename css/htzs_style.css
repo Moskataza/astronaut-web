@@ -1,0 +1,87 @@
+body.subpage main {
+	margin-top: 60px;
+}
+
+.page-knowledge {
+	position: relative;
+}
+
+.page-knowledge .knowledge-bg {
+	position: fixed;
+	inset: 0;
+	z-index: -2;
+	background-image:
+		linear-gradient(120deg, rgba(4, 8, 22, 0.56), rgba(2, 6, 18, 0.36)),
+		var(--knowledge-bg, none);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	filter: brightness(0.84);
+	pointer-events: none;
+}
+
+.page-knowledge main {
+	position: relative;
+	z-index: 0;
+}
+
+.knowledge-shell {
+	width: min(1100px, 92vw);
+	margin: 0 auto 80px;
+}
+
+.knowledge-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 20px;
+}
+
+.knowledge-card {
+	display: flex;
+	gap: 16px;
+	padding: 18px;
+	border-radius: var(--radius-md);
+	border: 1px solid rgba(118, 195, 255, 0.28);
+	background: rgba(6, 12, 30, 0.62);
+	box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 18px rgba(118, 195, 255, 0.18);
+	backdrop-filter: var(--glass-blur);
+}
+
+.knowledge-card img {
+	width: 120px;
+	height: 120px;
+	border-radius: 16px;
+	object-fit: cover;
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+}
+
+.knowledge-card h2 {
+	font-size: 18px;
+	margin-bottom: 8px;
+}
+
+.knowledge-card p {
+	font-size: 14px;
+}
+
+.knowledge-card .source {
+	font-size: 13px;
+	margin-top: 8px;
+	color: rgba(203, 212, 242, 0.78);
+}
+
+.knowledge-card a {
+	color: #7fd0ff;
+	font-weight: 600;
+}
+
+@media (max-width: 640px) {
+	.knowledge-card {
+		flex-direction: column;
+	}
+
+	.knowledge-card img {
+		width: 100%;
+		height: 180px;
+	}
+}

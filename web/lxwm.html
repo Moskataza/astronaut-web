@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<title>专题论坛 · 航天心声</title>
+	<style>
+		@import url(../css/global.css);
+		@import url(../css/lxwm_style.css);
+	</style>
+</head>
+
+<body class="theme-galaxy subpage page-forum" id="top">
+	<nav class="nav-bar">
+		<a class="logo" href="../index.html" aria-label="返回航天首页">
+			<img src="../images/logo-2025-light.svg" alt="中国航天2025专题标识">
+		</a>
+		<ul class="nav-links">
+			<li><a href="../index.html">航天首页</a></li>
+			<li><a href="news.html">航天新闻</a></li>
+			<li><a href="xw.html">航天发展</a></li>
+			<li><a href="htrw.html">航天成就</a></li>
+			<li><a href="fxrw.html">航天产品</a></li>
+			<li><a href="htzs.html">航天知识</a></li>
+			<li><a class="active" href="lxwm.html">专题论坛</a></li>
+		</ul>
+	</nav>
+
+	<!-- 专题论坛背景图：只需把 url('') 内的路径替换成你的图片 -->
+	<div class="forum-bg" aria-hidden="true" style="--forum-bg:url('../images/bbb.jpg');"></div>
+
+	<main class="forum-shell">
+		<header class="forum-hero">
+			<h1>专题论坛 · 逐梦航天</h1>
+			<p>欢迎在这里留下你对中国航天的感想、问题与祝福，与更多航天爱好者一起分享逐梦星海的故事。</p>
+		</header>
+
+		<section class="forum-board">
+			<h2>精选留言</h2>
+			<ul class="post-list" id="postList">
+				<li>
+					<div class="post-meta">
+						<span class="post-author">小明 · 高一航模社</span>
+						<time>2025-04-24</time>
+					</div>
+					<p>我们在学校搭建了“神舟二十号”纸质模型，想把太空烤翅的菜谱也带进课堂，欢迎老师分享更多在轨生活细节！</p>
+				</li>
+				<li>
+					<div class="post-meta">
+						<span class="post-author">小李 · 航天科普志愿者</span>
+						<time>2025-04-26</time>
+					</div>
+					<p>正在筹备 70 周年巡展，想借用你们整理的高清图组，还想知道嫦娥七号“跳跃探测器”的工作动画是否可以公开？</p>
+				</li>
+				<li>
+					<div class="post-meta">
+						<span class="post-author">星辰 · 航天迷</span>
+						<time>2025-05-02</time>
+					</div>
+					<p>建议论坛开设“航天知识问答”，比如为什么要在东风着陆场回收？欢迎管理员置顶更多知识帖。</p>
+				</li>
+			</ul>
+		</section>
+
+		<section class="forum-form">
+			<h2>发表感想</h2>
+			<form id="forumForm">
+				<label>
+					<span>昵称</span>
+					<input id="nickname" type="text" placeholder="请输入昵称或团队名称" required>
+				</label>
+				<label>
+					<span>主题</span>
+					<input id="topic" type="text" placeholder="例如：神舟二十号返程观礼计划" required>
+				</label>
+				<label>
+					<span>留言</span>
+					<textarea id="message" rows="4" placeholder="分享你的想法、提问或祝福" required></textarea>
+				</label>
+				<button type="submit" class="btn-solid">发布留言</button>
+				<div class="form-feedback" id="formFeedback" aria-live="polite"></div>
+			</form>
+		</section>
+	</main>
+
+	<a class="back-to-top" href="#top" aria-label="返回顶部">
+		<img src="../images/火箭.png" alt="">
+	</a>
+
+	<footer>
+		<div>2025年中国航天日主题｜逐梦星海 共襄七十 ·专题论坛</div>
+	</footer>
+</body>
+
+<script>
+	(() => {
+		const storageKey = "forumPosts";
+		const form = document.getElementById("forumForm");
+		const list = document.getElementById("postList");
+		const feedback = document.getElementById("formFeedback");
+		const nickname = document.getElementById("nickname");
+		const topic = document.getElementById("topic");
+		const message = document.getElementById("message");
+
+		const formatDate = (date) => {
+			try {
+				return new Intl.DateTimeFormat("zh-CN", {
+					year: "numeric",
+					month: "2-digit",
+					day: "2-digit",
+					hour: "2-digit",
+					minute: "2-digit"
+				}).format(date);
+			} catch (err) {
+				return date.toISOString().split("T")[0];
+			}
+		};
+
+		const createPostNode = (post, highlight = false) => {
+			const li = document.createElement("li");
+			if (highlight) li.classList.add("new-post");
+
+			const meta = document.createElement("div");
+			meta.className = "post-meta";
+
+			const author = document.createElement("span");
+			author.className = "post-author";
+			author.textContent = `${post.name} · ${post.topic}`;
+
+			const time = document.createElement("time");
+			time.textContent = post.time;
+
+			meta.append(author, time);
+
+			const body = document.createElement("p");
+			body.textContent = post.message;
+
+			li.append(meta, body);
+			return li;
+		};
+
+		const savePosts = (posts) => {
+			try {
+				localStorage.setItem(storageKey, JSON.stringify(posts.slice(0, 20)));
+			} catch (err) {
+				console.warn("无法保存留言：", err);
+			}
+		};
+
+		const loadPosts = () => {
+			try {
+				const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+				saved.forEach((post) => {
+					list.append(createPostNode(post, false));
+				});
+			} catch (err) {
+				console.warn("无法读取留言：", err);
+			}
+		};
+
+		const showFeedback = (msg, type = "info") => {
+			feedback.textContent = msg;
+			feedback.classList.remove("form-feedback--error", "form-feedback--success");
+			if (type === "error") {
+				feedback.classList.add("form-feedback--error");
+			} else if (type === "success") {
+				feedback.classList.add("form-feedback--success");
+			}
+		};
+
+		form?.addEventListener("submit", (event) => {
+			event.preventDefault();
+			const name = nickname.value.trim();
+			const topicValue = topic.value.trim();
+			const messageValue = message.value.trim();
+
+			if (!name || !topicValue || !messageValue) {
+				showFeedback("请完整填写昵称、主题和留言内容。", "error");
+				return;
+			}
+
+			const post = {
+				name,
+				topic: topicValue,
+				message: messageValue,
+				time: formatDate(new Date())
+			};
+
+			const existing = (() => {
+				try {
+					return JSON.parse(localStorage.getItem(storageKey) || "[]");
+				} catch {
+					return [];
+				}
+			})();
+			existing.unshift(post);
+			savePosts(existing);
+
+			list.prepend(createPostNode(post, true));
+			form.reset();
+			showFeedback("留言已发布，感谢分享！", "success");
+		});
+
+		loadPosts();
+	})();
+</script>
+
+</html>

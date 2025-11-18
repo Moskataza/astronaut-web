@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<title>航天新闻 · 即时播报</title>
+	<style>
+		@import url(../css/global.css);
+		@import url(../css/news_style.css);
+	</style>
+</head>
+
+<body class="theme-galaxy subpage news-page" id="top">
+	<nav class="nav-bar">
+		<a class="logo" href="../index.html" aria-label="返回航天首页">
+			<img src="../images/logo-2025-light.svg" alt="中国航天2025专题标识">
+		</a>
+		<ul class="nav-links">
+			<li><a href="../index.html">航天首页</a></li>
+			<li><a class="active" href="news.html">航天新闻</a></li>
+			<li><a href="xw.html">航天发展</a></li>
+			<li><a href="htrw.html">航天成就</a></li>
+			<li><a href="fxrw.html">航天产品</a></li>
+			<li><a href="htzs.html">航天知识</a></li>
+			<li><a href="lxwm.html">专题论坛</a></li>
+		</ul>
+	</nav>
+
+	<!-- 航天新闻背景图，可替换 url('') 为任意图片 -->
+	<div class="news-bg" aria-hidden="true" style="--news-bg:url('../images/bannar3.jpg');"></div>
+
+	<main class="news-shell">
+		<header class="news-hero">
+			<div class="news-hero__copy">
+				<span class="section-eyebrow">SPACE NEWS</span>
+				<h1>航天新闻 · 图文快讯</h1>
+				<p>聚合新华社、央视新闻、国家航天局等权威渠道的最新播报，覆盖载人航天、深空探测、商业航天以及航天文化活动，延续全站的沉浸式视觉体验。</p>
+			</div>
+			<form class="news-search" role="search" aria-label="航天新闻搜索">
+				<input type="search" name="q" placeholder="搜索任务 / 航天员 / 发射场…">
+				<button type="submit" class="btn-solid">搜索</button>
+			</form>
+		</header>
+
+		<section class="news-layout">
+			<div class="news-feed">
+				<h2>即时播报</h2>
+				<article class="news-article">
+					<div class="news-article__meta">
+						<span class="news-tag tag-hot">头条</span>
+						<time datetime="2025-04-25">2025.11.04</time>
+						<span>中国载人航天工程网</span>
+					</div>
+					<h3>神舟二十号和神舟二十一号航天员乘组完成在轨交接 </h3>
+					<p>北京时间2025年11月4日，神舟二十号和神舟二十一号航天员乘组进行交接仪式，两个乘组移交了中国空间站的钥匙。</p>
+					<a href="https://www.sohu.com/a/890048214_122279996" target="_blank" rel="noopener">阅读全文</a>
+				</article>
+				<article class="news-article">
+					<div class="news-article__meta">
+						<span class="news-tag tag-feature">深空</span>
+						<time datetime="2025-05-18">2025.04.28</time>
+						<span>搜狐</span>
+					</div>
+					<h3>嫦娥七号探测器进入总装阶段月球科研站建设加速推进 </h3>
+					<p>嫦娥七号探测器已进入总装阶段，计划2026年发射，将搭载轨道器、着陆器、巡视器及飞跃器四器组合，前往月球南极执行环境与资源详查任务，重点探测水冰等物质。</p>
+					<a href="https://www.sohu.com/a/890048214_122279996" target="_blank" rel="noopener">权威发布</a>
+				</article>
+				<article class="news-article">
+					<div class="news-article__meta">
+						<span class="news-tag tag-check">商业</span>
+						<time datetime="2025-06-30">2024.11.30</time>
+						<span>中国新闻网</span>
+					</div>
+					<h3>中国首型4米级运载火箭长征十二号首飞成功</h3>
+					<p>11月30日晚，中国首型4米级运载火箭长征十二号运载火箭在海南商业航天发射场点火起飞，随后，火箭顺利将卫星互联网技术试验卫星、技术试验卫星03星送入预定轨道，发射任务取得圆满成功</p>
+					<a href="https://www.chinanews.com.cn/gn/2024/11-30/10328420.shtml" target="_blank" rel="noopener">内容详解</a>
+				</article>
+				<article class="news-article">
+					<div class="news-article__meta">
+						<span class="news-tag">气象</span>
+						<time datetime="2025-07-12">2025.07.12</time>
+						<span>中国气象局</span>
+					</div>
+					<h3>风云四号 D 星发射成功 将为 2025 亚太防灾年提供支撑</h3>
+					<p>中国气象局通报，风云四号 D 星在西昌发射中心成功入轨，新增的短波红外仪器可提供 1 分钟更新的台风眼细节图像，支撑亚太防灾合作。</p>
+					<a href="https://www.cma.gov.cn/2025xwzx/2025xqxxw/202507/t20250712_6999999.html" target="_blank" rel="noopener">业务公告</a>
+				</article>
+			</div>
+
+			<aside class="news-focus">
+				<div class="focus-video-carousel" id="focusVideoCarousel">
+					<figure class="focus-video__slide is-active">
+						<img src="../images/food.png" alt="阅兵现场画面">
+						<button type="button" data-link="../images/aaa.mp4" aria-label="播放视频">▶</button>
+						<figcaption class="focus-video__caption">宇宙级吃播！网友：馋哭国际空间站了</figcaption>
+					</figure>
+					<figure class="focus-video__slide">
+						<img src="../images/food2.png" alt="航天员出舱画面">
+						<button type="button" data-link="../images/bbb.mp4" aria-label="播放视频">▶</button>
+						<figcaption class="focus-video__caption">神二十乘组今天返回！</figcaption>
+					</figure>
+					<div class="focus-video__nav">
+						<button type="button" class="focus-video__btn focus-video__btn--prev" aria-label="上一条视频">‹</button>
+						<button type="button" class="focus-video__btn focus-video__btn--next" aria-label="下一条视频">›</button>
+					</div>
+					<div class="focus-video__dots" aria-label="视频切换">
+						<button type="button" class="is-active" aria-label="第一条视频"></button>
+						<button type="button" aria-label="第二条视频"></button>
+					</div>
+				</div>
+				<ul class="focus-links">
+					<li><a href="https://www.gov.cn/xinwen/2025-04/24/content_6945000.htm" target="_blank" rel="noopener">【权威】2025 航天日主会场落地陕西西安</a></li>
+					<li><a href="https://www.sohu.com/a/924345405_160125" target="_blank" rel="noopener">【载人】神舟二十一号展开第三次出舱准备</a></li>
+					<li><a href="https://www.ncsti.gov.cn/kjdt/kjrd/qtrd_kjrd/202409/t20240906_178062.html" target="_blank" rel="noopener">【探月】国际月球科研站合作备忘录新增四国</a></li>
+					<li><a href="https://news.qq.com/rain/a/20240625A0857M00" target="_blank" rel="noopener">【商业】民营可重复使用火箭完成复用测试</a></li>
+					<li><a href="https://tv.cctv.com/2024/12/27/VIDAjqvSrEvYbrUFggPXwlYI241227.shtml" target="_blank" rel="noopener">【科普】央视纪录片《月背焕新·嫦娥七号》上线</a></li>
+				</ul>
+				<div class="focus-gallery">
+					<h3>高清组图</h3>
+					<div class="focus-gallery__grid">
+						<img src="../images/xw8.JPG" alt="">
+						<img src="../images/xw9.JPG" alt="">
+						<img src="../images/xw5.JPG" alt="">
+						<img src="../images/xw7.JPG" alt="">
+						<img src="../images/xw10.JPG" alt="">
+						<img src="../images/xw6.JPG" alt="">
+						<img src="../images/xw11.JPG" alt="">
+						<img src="../images/xw12.JPG" alt="">
+						<img src="../images/xw13.JPG" alt="">
+					</div>
+				</div>
+			</aside>
+		</section>
+
+		<section class="news-columns">
+			<article class="news-card">
+				<h3>特别策划 · “逐梦星海 2025”</h3>
+				<p>聚焦航天英雄进校园、航天日西安主场与数字航天证章 2.0，提供 PPT / 互动素材下载。</p>
+				<a href="https://www.cmse.gov.cn/" target="_blank" rel="noopener">查看策划</a>
+			</article>
+			<article class="news-card">
+				<h3>原创专栏 · 问天笔记 2025</h3>
+				<p>邀请空间站科学家撰写 2025 年专题：在轨维修、舱外载荷共建与商业补给合作。</p>
+				<a href="https://www.gmw.cn/" target="_blank" rel="noopener">阅读专栏</a>
+			</article>
+			<article class="news-card">
+				<h3>数据文库 · 任务时间线</h3>
+				<p>追加 2025 年神舟 20-21 号、天问二号、长征十二号等节点，支持年份 / 任务筛选导出。</p>
+				<a href="https://www.spacechina.com/" target="_blank" rel="noopener">进入文库</a>
+			</article>
+		</section>
+	</main>
+
+	<a class="back-to-top" href="#top" aria-label="返回顶部">
+		<img src="../images/火箭.png" alt="">
+	</a>
+
+	<footer>
+		<div>信息来源：新华社 / 国家航天局 / 中国航天科技集团 · 2025航天数字专题</div>
+	</footer>
+</body>
+
+<script>
+	(() => {
+		const carousel = document.getElementById("focusVideoCarousel");
+		if (!carousel) return;
+		const slides = Array.from(carousel.querySelectorAll(".focus-video__slide"));
+		const dots = Array.from(carousel.querySelectorAll(".focus-video__dots button"));
+		const prevBtn = carousel.querySelector(".focus-video__btn--prev");
+		const nextBtn = carousel.querySelector(".focus-video__btn--next");
+
+		let current = 0;
+		let timer;
+
+		const updateSlides = (index) => {
+			slides.forEach((slide, i) => {
+				slide.classList.toggle("is-active", i === index);
+			});
+			dots.forEach((dot, i) => {
+				dot.classList.toggle("is-active", i === index);
+			});
+			current = index;
+		};
+
+		const gotoNext = () => {
+			const next = (current + 1) % slides.length;
+			updateSlides(next);
+		};
+
+		const gotoPrev = () => {
+			const prev = (current - 1 + slides.length) % slides.length;
+			updateSlides(prev);
+		};
+
+		const resetTimer = () => {
+			clearInterval(timer);
+			timer = setInterval(gotoNext, 6000);
+		};
+
+		nextBtn?.addEventListener("click", () => {
+			gotoNext();
+			resetTimer();
+		});
+
+		prevBtn?.addEventListener("click", () => {
+			gotoPrev();
+			resetTimer();
+		});
+
+		dots.forEach((dot, index) => {
+			dot.addEventListener("click", () => {
+				updateSlides(index);
+				resetTimer();
+			});
+		});
+
+		slides.forEach((slide) => {
+			const button = slide.querySelector("button[data-link]");
+			button?.addEventListener("click", () => {
+				const link = button.dataset.link;
+				if (link) {
+					window.open(link, "_blank", "noopener");
+				}
+			});
+		});
+
+		resetTimer();
+	})();
+</script>
+
+</html>
+
