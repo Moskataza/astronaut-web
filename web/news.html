@@ -204,6 +204,21 @@
 			</div>
 		</div>
 	</div>
+
+	
+	<!-- 视频播放模态框 -->
+	<div class="video-modal" id="videoModal">
+		<div class="modal-overlay"></div>
+		<div class="modal-content">
+			<button class="modal-close" aria-label="关闭视频">×</button>
+			<div class="video-container">
+				<video id="modalVideo" controls>
+					<source src="" type="video/mp4">
+					您的浏览器不支持视频播放。
+				</video>
+			</div>
+		</div>
+	</div>
 </body>
 
 <script>
@@ -265,12 +280,50 @@
 			button?.addEventListener("click", () => {
 				const link = button.dataset.link;
 				if (link) {
-					window.open(link, "_blank", "noopener");
+					openVideoModal(link);
 				}
 			});
 		});
 
 		resetTimer();
+	})();
+	
+	// 视频播放功能
+	(() => {
+		const videoModal = document.getElementById('videoModal');
+		const modalVideo = document.getElementById('modalVideo');
+		const videoSource = modalVideo.querySelector('source');
+		const videoClose = videoModal.querySelector('.modal-close');
+		const videoOverlay = videoModal.querySelector('.modal-overlay');
+
+		// 打开视频模态框
+		window.openVideoModal = (videoUrl) => {
+			videoSource.src = videoUrl;
+			modalVideo.load();
+			videoModal.classList.add('active');
+			document.body.style.overflow = 'hidden';
+			// 自动播放
+			modalVideo.play().catch(err => console.log('自动播放失败:', err));
+		};
+
+		// 关闭视频模态框
+		const closeVideoModal = () => {
+			modalVideo.pause();
+			modalVideo.currentTime = 0;
+			videoModal.classList.remove('active');
+			document.body.style.overflow = '';
+		};
+
+		// 绑定关闭事件
+		videoClose.addEventListener('click', closeVideoModal);
+		videoOverlay.addEventListener('click', closeVideoModal);
+
+		// ESC键关闭
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+				closeVideoModal();
+			}
+		});
 	})();
 
 	// 图片放大功能
