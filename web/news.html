@@ -109,7 +109,7 @@
 					</div>
 				</div>
 				<ul class="focus-links">
-					<li><a href="https://www.gov.cn/xinwen/2025-04/24/content_6945000.htm" target="_blank" rel="noopener">【权威】2025 航天日主会场落地陕西西安</a></li>
+					<li><a href="http://www.iygw.cn/2025/0720/315077.html" target="_blank" rel="noopener">【权威】2025 航天日主会场落地陕西西安</a></li>
 					<li><a href="https://www.sohu.com/a/924345405_160125" target="_blank" rel="noopener">【载人】神舟二十一号展开第三次出舱准备</a></li>
 					<li><a href="https://www.ncsti.gov.cn/kjdt/kjrd/qtrd_kjrd/202409/t20240906_178062.html" target="_blank" rel="noopener">【探月】国际月球科研站合作备忘录新增四国</a></li>
 					<li><a href="https://news.qq.com/rain/a/20240625A0857M00" target="_blank" rel="noopener">【商业】民营可重复使用火箭完成复用测试</a></li>
@@ -118,15 +118,42 @@
 				<div class="focus-gallery">
 					<h3>高清组图</h3>
 					<div class="focus-gallery__grid">
-						<img src="../images/xw8.JPG" alt="">
-						<img src="../images/xw9.JPG" alt="">
-						<img src="../images/xw5.JPG" alt="">
-						<img src="../images/xw7.JPG" alt="">
-						<img src="../images/xw10.JPG" alt="">
-						<img src="../images/xw6.JPG" alt="">
-						<img src="../images/xw11.JPG" alt="">
-						<img src="../images/xw12.JPG" alt="">
-						<img src="../images/xw13.JPG" alt="">
+						<div class="gallery-item" data-src="../images/xw8.JPG" data-title="神舟二十号发射" data-desc="神舟二十号运载火箭在酒泉卫星发射中心成功发射，搭载航天员执行空间站任务。">
+							<img src="../images/xw8.JPG" alt="神舟二十号发射">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw9.JPG" data-title="空间站对接" data-desc="神舟飞船与中国空间站成功对接，航天员进入核心舱开展工作。">
+							<img src="../images/xw9.JPG" alt="空间站对接">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw5.JPG" data-title="航天员出舱" data-desc="航天员执行舱外任务，在太空中进行设备维护和科学实验。">
+							<img src="../images/xw5.JPG" alt="航天员出舱">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw7.JPG" data-title="火箭总装" data-desc="长征系列火箭在总装车间进行最后阶段的装配工作。">
+							<img src="../images/xw7.JPG" alt="火箭总装">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw10.JPG" data-title="卫星发射" data-desc="风云气象卫星发射升空，为气象预报提供重要数据支持。">
+							<img src="../images/xw10.JPG" alt="卫星发射">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw6.JPG" data-title="航天员训练" data-desc="航天员在地面进行模拟训练，为太空任务做好充分准备。">
+							<img src="../images/xw6.JPG" alt="航天员训练">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw11.JPG" data-title="深空探测" data-desc="天问系列探测器执行深空探测任务，探索宇宙奥秘。">
+							<img src="../images/xw11.JPG" alt="深空探测">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw12.JPG" data-title="月球探测" data-desc="嫦娥系列探测器在月球表面开展科学探测工作。">
+							<img src="../images/xw12.JPG" alt="月球探测">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw13.JPG" data-title="航天科技" data-desc="航天科技人员在控制中心监控航天器运行状态。">
+							<img src="../images/xw13.JPG" alt="航天科技">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
 					</div>
 				</div>
 			</aside>
@@ -158,6 +185,25 @@
 	<footer>
 		<div>信息来源：新华社 / 国家航天局 / 中国航天科技集团 · 2025航天数字专题</div>
 	</footer>
+
+	<!-- 图片放大模态框 -->
+	<div class="image-modal" id="imageModal">
+		<div class="modal-overlay"></div>
+		<div class="modal-content">
+			<button class="modal-close" aria-label="关闭图片">×</button>
+			<div class="modal-image-container">
+				<img class="modal-image" src="" alt="">
+			</div>
+			<div class="modal-info">
+				<h3 class="modal-title"></h3>
+				<p class="modal-desc"></p>
+			</div>
+			<div class="modal-nav">
+				<button class="modal-prev" aria-label="上一张">‹</button>
+				<button class="modal-next" aria-label="下一张">›</button>
+			</div>
+		</div>
+	</div>
 </body>
 
 <script>
@@ -226,7 +272,83 @@
 
 		resetTimer();
 	})();
+
+	// 图片放大功能
+	(() => {
+		const modal = document.getElementById('imageModal');
+		const modalImage = modal.querySelector('.modal-image');
+		const modalTitle = modal.querySelector('.modal-title');
+		const modalDesc = modal.querySelector('.modal-desc');
+		const modalClose = modal.querySelector('.modal-close');
+		const modalPrev = modal.querySelector('.modal-prev');
+		const modalNext = modal.querySelector('.modal-next');
+		const modalOverlay = modal.querySelector('.modal-overlay');
+
+		const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+		let currentIndex = 0;
+
+		// 打开模态框
+		const openModal = (index) => {
+			const item = galleryItems[index];
+			const src = item.dataset.src;
+			const title = item.dataset.title;
+			const desc = item.dataset.desc;
+
+			modalImage.src = src;
+			modalImage.alt = title;
+			modalTitle.textContent = title;
+			modalDesc.textContent = desc;
+			currentIndex = index;
+
+			modal.classList.add('active');
+			document.body.style.overflow = 'hidden';
+		};
+
+		// 关闭模态框
+		const closeModal = () => {
+			modal.classList.remove('active');
+			document.body.style.overflow = '';
+		};
+
+		// 下一张图片
+		const nextImage = () => {
+			currentIndex = (currentIndex + 1) % galleryItems.length;
+			openModal(currentIndex);
+		};
+
+		// 上一张图片
+		const prevImage = () => {
+			currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+			openModal(currentIndex);
+		};
+
+		// 绑定事件
+		galleryItems.forEach((item, index) => {
+			item.addEventListener('click', () => openModal(index));
+		});
+
+		modalClose.addEventListener('click', closeModal);
+		modalOverlay.addEventListener('click', closeModal);
+		modalNext.addEventListener('click', nextImage);
+		modalPrev.addEventListener('click', prevImage);
+
+		// 键盘导航
+		document.addEventListener('keydown', (e) => {
+			if (!modal.classList.contains('active')) return;
+
+			switch (e.key) {
+				case 'Escape':
+					closeModal();
+					break;
+				case 'ArrowLeft':
+					prevImage();
+					break;
+				case 'ArrowRight':
+					nextImage();
+					break;
+			}
+		});
+	})();
 </script>
 
 </html>
-

@@ -200,30 +200,30 @@
 				<div class="dev-gallery">
 					<h3>影像资料</h3>
 					<div class="dev-gallery__grid">
-						<figure>
+						<div class="gallery-item" data-src="../images/万户.JPG" data-title="万户火箭设想" data-desc="明朝万户是中国古代火箭技术的先驱，他尝试用47枚火箭绑在椅子上实现飞天梦想，体现了中华民族对太空探索的早期向往。">
 							<img src="../images/万户.JPG" alt="明朝万户飞天想象">
-							<figcaption>万户火箭设想</figcaption>
-						</figure>
-						<figure>
-							<img src="../images/xw2.JPG" alt="航天发展影像">
-							<figcaption>东方红工程</figcaption>
-						</figure>
-						<figure>
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw2.JPG" data-title="东方红工程" data-desc="东方红一号是中国第一颗人造地球卫星，于1970年4月24日成功发射，标志着中国成为世界上第五个独立发射人造卫星的国家。">
+							<img src="../images/xw2.JPG" alt="东方红工程">
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/xw8.JPG" data-title="长征系列火箭" data-desc="长征系列运载火箭是中国航天发射的主力，从长征一号到长征十二号，形成了完整的运载火箭体系，承担了卫星发射、载人航天、深空探测等任务。">
 							<img src="../images/xw8.JPG" alt="长征系列火箭">
-							<figcaption>长征系列</figcaption>
-						</figure>
-						<figure>
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/神舟一号.jpg" data-title="神舟一号飞船" data-desc="神舟一号是中国第一艘无人试验飞船，于1999年11月20日成功发射，标志着中国载人航天工程取得重大突破。">
 							<img src="../images/神舟一号.jpg" alt="神舟一号飞船">
-							<figcaption>神舟一号</figcaption>
-						</figure>
-						<figure>
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/神舟五号.jpg" data-title="神舟五号返回舱" data-desc="神舟五号是中国第一艘载人飞船，于2003年10月15日发射，航天员杨利伟成为中国进入太空第一人，实现了中华民族千年飞天梦想。">
 							<img src="../images/神舟五号.jpg" alt="神舟五号返回舱">
-							<figcaption>神舟五号</figcaption>
-						</figure>
-						<figure>
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
+						<div class="gallery-item" data-src="../images/风云一号.JPG" data-title="风云卫星" data-desc="风云系列气象卫星是中国自主研制的气象观测卫星，为天气预报、气候监测、防灾减灾提供了重要数据支持。">
 							<img src="../images/风云一号.JPG" alt="风云卫星">
-							<figcaption>风云卫星</figcaption>
-						</figure>
+							<div class="gallery-overlay">点击查看大图</div>
+						</div>
 					</div>
 				</div>
 				<div class="dev-notes">
@@ -246,6 +246,104 @@
 	<footer>
 		<div>2025年中国航天日主题｜逐梦星海 共襄七十 · 数据来源：国家航天局 / 中国载人航天工程网 / 光明日报</div>
 	</footer>
+
+	<!-- 图片放大模态框 -->
+	<div class="image-modal" id="imageModal">
+		<div class="modal-overlay"></div>
+		<div class="modal-content">
+			<button class="modal-close" aria-label="关闭图片">×</button>
+			<div class="modal-image-container">
+				<img class="modal-image" src="" alt="">
+			</div>
+			<div class="modal-info">
+				<h3 class="modal-title"></h3>
+				<p class="modal-desc"></p>
+			</div>
+			<div class="modal-nav">
+				<button class="modal-prev" aria-label="上一张">‹</button>
+				<button class="modal-next" aria-label="下一张">›</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// 图片放大功能
+		(() => {
+			const modal = document.getElementById('imageModal');
+			const modalImage = modal.querySelector('.modal-image');
+			const modalTitle = modal.querySelector('.modal-title');
+			const modalDesc = modal.querySelector('.modal-desc');
+			const modalClose = modal.querySelector('.modal-close');
+			const modalPrev = modal.querySelector('.modal-prev');
+			const modalNext = modal.querySelector('.modal-next');
+			const modalOverlay = modal.querySelector('.modal-overlay');
+
+			const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+			let currentIndex = 0;
+
+			// 打开模态框
+			const openModal = (index) => {
+				const item = galleryItems[index];
+				const src = item.dataset.src;
+				const title = item.dataset.title;
+				const desc = item.dataset.desc;
+
+				modalImage.src = src;
+				modalImage.alt = title;
+				modalTitle.textContent = title;
+				modalDesc.textContent = desc;
+				currentIndex = index;
+
+				modal.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			};
+
+			// 关闭模态框
+			const closeModal = () => {
+				modal.classList.remove('active');
+				document.body.style.overflow = '';
+			};
+
+			// 下一张图片
+			const nextImage = () => {
+				currentIndex = (currentIndex + 1) % galleryItems.length;
+				openModal(currentIndex);
+			};
+
+			// 上一张图片
+			const prevImage = () => {
+				currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+				openModal(currentIndex);
+			};
+
+			// 绑定事件
+			galleryItems.forEach((item, index) => {
+				item.addEventListener('click', () => openModal(index));
+			});
+
+			modalClose.addEventListener('click', closeModal);
+			modalOverlay.addEventListener('click', closeModal);
+			modalNext.addEventListener('click', nextImage);
+			modalPrev.addEventListener('click', prevImage);
+
+			// 键盘导航
+			document.addEventListener('keydown', (e) => {
+				if (!modal.classList.contains('active')) return;
+
+				switch (e.key) {
+					case 'Escape':
+						closeModal();
+						break;
+					case 'ArrowLeft':
+						prevImage();
+						break;
+					case 'ArrowRight':
+						nextImage();
+						break;
+				}
+			});
+		})();
+	</script>
 </body>
 
 </html>
