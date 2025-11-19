@@ -3,6 +3,8 @@
 
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="../images/icon.ico" type="image/x-icon">
 	<title>航天新闻 · 即时播报</title>
 	<style>
 		@import url(../css/global.css);
@@ -90,14 +92,19 @@
 			<aside class="news-focus">
 				<div class="focus-video-carousel" id="focusVideoCarousel">
 					<figure class="focus-video__slide is-active">
-						<img src="../images/food.png" alt="阅兵现场画面">
+						<img src="../images/cover.png" alt="阅兵现场画面">
 						<button type="button" data-link="../images/aaa.mp4" aria-label="播放视频">▶</button>
 						<figcaption class="focus-video__caption">宇宙级吃播！网友：馋哭国际空间站了</figcaption>
 					</figure>
 					<figure class="focus-video__slide">
-						<img src="../images/food2.png" alt="航天员出舱画面">
+						<img src="../images/cover2.png" alt="航天员出舱画面">
 						<button type="button" data-link="../images/bbb.mp4" aria-label="播放视频">▶</button>
 						<figcaption class="focus-video__caption">神二十乘组今天返回！</figcaption>
+					</figure>
+					<figure class="focus-video__slide">
+						<img src="../images/cover3.png" alt="航天员出舱画面">
+						<button type="button" data-link="../images/ccc.mp4" aria-label="播放视频">▶</button>
+						<figcaption class="focus-video__caption">疑遭空间微小碎片撞击，神二十返回任务推迟进行</figcaption>
 					</figure>
 					<div class="focus-video__nav">
 						<button type="button" class="focus-video__btn focus-video__btn--prev" aria-label="上一条视频">‹</button>
@@ -106,6 +113,7 @@
 					<div class="focus-video__dots" aria-label="视频切换">
 						<button type="button" class="is-active" aria-label="第一条视频"></button>
 						<button type="button" aria-label="第二条视频"></button>
+						<button type="button" aria-label="第三条视频"></button>
 					</div>
 				</div>
 				<ul class="focus-links">
@@ -204,6 +212,21 @@
 			</div>
 		</div>
 	</div>
+
+	
+	<!-- 视频播放模态框 -->
+	<div class="video-modal" id="videoModal">
+		<div class="modal-overlay"></div>
+		<div class="modal-content">
+			<button class="modal-close" aria-label="关闭视频">×</button>
+			<div class="video-container">
+				<video id="modalVideo" controls>
+					<source src="" type="video/mp4">
+					您的浏览器不支持视频播放。
+				</video>
+			</div>
+		</div>
+	</div>
 </body>
 
 <script>
@@ -265,12 +288,50 @@
 			button?.addEventListener("click", () => {
 				const link = button.dataset.link;
 				if (link) {
-					window.open(link, "_blank", "noopener");
+					openVideoModal(link);
 				}
 			});
 		});
 
 		resetTimer();
+	})();
+	
+	// 视频播放功能
+	(() => {
+		const videoModal = document.getElementById('videoModal');
+		const modalVideo = document.getElementById('modalVideo');
+		const videoSource = modalVideo.querySelector('source');
+		const videoClose = videoModal.querySelector('.modal-close');
+		const videoOverlay = videoModal.querySelector('.modal-overlay');
+
+		// 打开视频模态框
+		window.openVideoModal = (videoUrl) => {
+			videoSource.src = videoUrl;
+			modalVideo.load();
+			videoModal.classList.add('active');
+			document.body.style.overflow = 'hidden';
+			// 自动播放
+			modalVideo.play().catch(err => console.log('自动播放失败:', err));
+		};
+
+		// 关闭视频模态框
+		const closeVideoModal = () => {
+			modalVideo.pause();
+			modalVideo.currentTime = 0;
+			videoModal.classList.remove('active');
+			document.body.style.overflow = '';
+		};
+
+		// 绑定关闭事件
+		videoClose.addEventListener('click', closeVideoModal);
+		videoOverlay.addEventListener('click', closeVideoModal);
+
+		// ESC键关闭
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+				closeVideoModal();
+			}
+		});
 	})();
 
 	// 图片放大功能
